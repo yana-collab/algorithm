@@ -34,4 +34,28 @@ subArr($arr, k);
 //Ввод: натуральное число n
 //Вывод: количество простых чисел строго меньше n
 
+function getPrimes($num) {
+    $primes = array();
+    $not_primes = array();
 
+    for($i = 4; $i <= $num; $i+=2) {
+        $not_primes[$i] = true;
+    }
+    $next = 3;
+    while($next <= (int)sqrt($num)) {
+        for($i = $next*2; $i<= $num; $i+=$next) {
+            $not_primes[$i] = true;
+        }
+        $next += 2;
+        while($next <= $num && isset($not_primes[$next])) {
+            $next+=2;
+        }
+    }
+    for($i = 2; $i < $num; $i++) {
+        if(!isset($not_primes[$i]))
+            $primes[] = $i;
+    }
+    return count($primes);
+
+}
+getPrimes($num);
