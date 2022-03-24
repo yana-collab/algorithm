@@ -59,3 +59,28 @@ function getPrimes($num) {
 
 }
 getPrimes($num);
+
+//Дан массив неповторяющихся чисел, который был отсортирован,
+// а затем циклически сдвинут на неизвестное число позиций.
+//Опишите без кода и псевдокода алгоритм поиска максимума в таком массиве
+
+
+function getMax ($arr)
+{
+    $left = 0;
+    $right = count($arr);
+    $mid = floor($left + $right) / 2;
+    $max = $arr[0];
+
+    for ($i = $left; $i <= $mid; $i++) {
+        if ($arr[$i + 1] > $i)
+            $max = $arr[$i + 1];
+    }
+    for ($i = $mid; $i <= $right; $i++) {
+        if ($max < $arr[$i])
+            $max = $arr[$i];
+
+    }
+    return $max;
+}
+getMax($arr);
